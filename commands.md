@@ -2,6 +2,8 @@
 
 Some of the most commonly used docker commands are 
 
+一些最常用的 docker 命令是
+
 ### docker images
 
 Lists docker images on the host machine.
@@ -16,8 +18,15 @@ Runs a Docker container.
 
 There are many arguments which you can pass to this command for example,
 
+有许多参数可以传递给此命令，例如，
+
 `docker run -d` -> Run container in background and print container ID
+
+`docker run -d` -> 在后台运行容器并打印容器 ID 
+
 `docker run -p` -> Port mapping
+
+`docker run -p` -> 端口映射
 
 use `docker run --help` to look into more arguments.
 
@@ -56,3 +65,5 @@ Run a command in a running container.
 ### docker network
 
 Manage Docker networks such as creating and removing networks, and connecting containers to networks.
+
+管理 Docker 网络，例如创建和删除网络，以及将容器连接到网络。

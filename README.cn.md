@@ -382,27 +382,70 @@ cd  examples
 
 ### Login to Docker [Create an account with https://hub.docker.com/]
 
-```
+```sh
 docker login
 ```
 
 ```
-Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one.
+Login with your Docker ID to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com to create one
+使用你的 Docker ID 登录，可以从 Docker Hub 推送和拉取图像。如果你没有 Docker ID，去 https://hub.Docker.com 创建一个。
+
 Username: abhishekf5
 Password:
 WARNING! Your password will be stored unencrypted in /home/ubuntu/.docker/config.json.
+警告! 您的密码将未加密地存储在/home/ubuntu/. docker/config.json 中。
+
 Configure a credential helper to remove this warning. See
 https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+配置凭据帮助器以删除此警告。请参见
+
+Https://docs.docker.com/engine/reference/commandline/login/#credentials-store
 
 Login Succeeded
 ```
 
 ### Build your first Docker Image
 
+### 构建您的第一个 Docker 映像
+
+```sh
+mkdir first-docker-file
+cd first-docker-file
+touch Dockerfile
+touch app.py
+echo "print('Hello World')" > app.py
+```
+
+```Dockerfile
+FROM ubuntu:latest
+
+# Set the working directory in the image
+WORKDIR /app
+
+# Copy the files from the host file system to the image file system
+COPY . /app
+
+# Install the necessary packages
+RUN apt-get update && apt-get install -y python3 python3-pip
+
+# Set environment variables
+ENV NAME World
+
+# Run a command to start the application
+CMD ["python3", "app.py"]
+```
+
 You need to change the username accoringly in the below command
 
-```
-docker build -t abhishekf5/my-first-docker-image:latest .
+您需要在以下命令中相应地更改用户名
+
+```sh
+# -t is used to tag the image
+# . is used to specify the current directory
+docker build -t nahidaaa/my-first-docker-image:latest .
+# if不在当前目录中，可以使用以下命令
+# -f is used to specify the Dockerfile path
+docker build -t nahidaaa/my-first-docker-image:latest -f /path/to/Dockerfile ./first-docker-file
 ```
 
 Output of the above command
@@ -437,7 +480,7 @@ Output of the above command
 
 ### Verify Docker Image is created
 
-```
+```sh
 docker images
 ```
 
@@ -452,8 +495,8 @@ hello-world                        latest    feb5d9fea6a5   16 months ago    13.
 
 ### Run your First Docker Container
 
-```
-docker run -it abhishekf5/my-first-docker-image
+```sh
+docker run -it nahidaaa/my-first-docker-image
 ```
 
 Output
@@ -464,8 +507,8 @@ Hello World
 
 ### Push the Image to DockerHub and share it with the world
 
-```
-docker push abhishekf5/my-first-docker-image
+```sh
+docker push nahidaaa/my-first-docker-image
 ```
 
 Output
