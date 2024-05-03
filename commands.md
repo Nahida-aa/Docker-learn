@@ -35,6 +35,13 @@ docker rmi <image_name>
 
 ### image to container (run(create and start))
 
+**[volumes](volumes.md)**
+
+```sh
+# Create a new container from an image with volume mapping.
+docker run -v <host_path>:<container_path> <image_name>
+```
+
 ```sh
 # Create a new container from an image.(create and start)
 docker run <image_name>
@@ -43,13 +50,12 @@ docker run --name <container_name> <image_name>
 # Create a new container from an image and run in background.
 docker run -d <image_name>
 # Create a new container from an image with port mapping.
+# 访问host_prot时就会访问container_port
 docker run -p <host_port>:<container_port> <image_name>
-# Create a new container from an image with volume mapping.
-docker run -v <host_path>:<container_path> <image_name>
 # Create a new container from an image with interactive mode.
-docker run -it <image_name> /bin/zsh
+docker run -it <image_name> /bin/bash
 # Create a new container from an image with interactive mode and run in background.
-docker run -dit <image_name> /bin/zsh
+docker run -dit <image_name> /bin/bash
 # Create a new container from an image with environment variables.
 docker run -e <key>=<value> <image_name>
 # Create a new container from an image with memory limit.
@@ -96,7 +102,7 @@ docker rm <container_id>
 # Run a command in a running container.
 docker exec <container_id> <command>
 # Run a command in a running container in interactive mode.
-docker exec -it <container_id> /bin/zsh
+docker exec -it <container_id> /bin/bash
 ```
 
 ### container to image (commit)
@@ -106,6 +112,7 @@ docker exec -it <container_id> /bin/zsh
 docker commit <container_id> <image_name>
 ```
 
+请注意，`docker commit` 命令只会保存容器的文件系统的当前状态，它不会保存任何关于容器的元数据（如环境变量，暴露的端口，卷等）。如果你想保存这些信息，你应该使用 `Dockerfile` 和 `docker build` 命令来创建你的镜像。
 
 ### docker network
 
