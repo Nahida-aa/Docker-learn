@@ -125,3 +125,27 @@ This mode enables communication between containers across multiple Docker host m
 This mode allows a container to appear on the network as a physical host rather than as a container.
 
 这种模式允许容器以物理主机而不是容器的形式出现在网络上。
+
+## Docker Networking Commands
+
+### Create a Network
+
+To create a new network, you can use the following command:
+
+要创建一个新网络，可以使用以下命令：
+
+```sh
+docker network create -d <driver=bridge> --subnet <subnet> --gateway <gateway> <network_name>
+```
+
+- bridge: 默认的网络驱动。如果你不指定一个驱动，那么这就是你会得到的网络驱动。桥接网络在单个主机上进行网络通信，但是不适合跨主机通信或者大规模应用。
+
+- host: 对于不需要任何网络隔离的容器，或者需要使用主机网络的容器，可以使用host网络。
+
+- overlay: 创建一个跨多个Docker宿主机的网络，通常在Swarm模式下使用。
+
+- macvlan: Macvlan网络允许你将容器插入到主机的网络，容器可以获取真实的IP地址。
+
+- none: 对于不需要或者可以自行配置网络的容器，可以使用none网络。
+
+- network plugin: 你也可以使用Docker网络插件，如Weave，Calico等
