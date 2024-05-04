@@ -1,5 +1,7 @@
 # Docker Networking
 
+*Read this in other language: [Chinese(Simplified)](Networking.cn.md).*
+
 Networking allows containers to communicate with each other and with the host system. Containers run isolated from the host system
 and need a way to communicate with each other and with the host system.
 
